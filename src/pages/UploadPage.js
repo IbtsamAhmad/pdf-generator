@@ -56,13 +56,10 @@ const columns = [
             console.log("hiddenElement", hiddenElement);
           hiddenElement.click();
           }
-
-
-      
         },
       };
     },
-    // render: text=><span>{text}</span>
+     render: text=><span className="myLink">{text}</span>
     // render: text=><Link to={text} target="_blank">{text}</Link>
   },
 ];
@@ -88,7 +85,7 @@ const UploadPage = () => {
         key: i,
       name: "Sample File",
       fileSize: '200 KB',
-      date: d.toString(),
+      date: d.toISOString().split('T')[0],
       download: list.fileId,
 
        }
