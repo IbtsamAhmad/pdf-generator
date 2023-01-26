@@ -125,7 +125,7 @@ const Home = () => {
         <h1>Upload Files</h1>
         <p>Please upload the following files</p>
 
-        <div className="upload-container">
+        {/* <div className="upload-container">
           <h2>Upload E-Signature</h2>
           <p>Upload a good Snippet of your e-signature</p>
           <Dragger
@@ -141,7 +141,7 @@ const Home = () => {
             </p>
             <p>SVG, PNG, JPG (max. 800x400px)</p>
           </Dragger>
-        </div>
+        </div> */}
       
         <div className="upload-container">
         <h2>Upload Excel Files</h2>
