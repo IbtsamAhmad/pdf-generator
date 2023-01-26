@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+h1{
+  font-family: 'Inter', sans-serif;
+  font-weight: 600 !important;
+  font-size: 30px;
+  line-height: 38px;
+  letter-spacing: -0.02em;
+  color: #101828;
+  
+}
+
+p{
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height, or 150% */
+  
+  
+  /* Gray/500 */
+  
+  color: #667085;
+}
+
+h2{
+  font-family: 'Inter', sans-serif;
+font-weight: 500;
+font-size: 14px;
+line-height: 20px;
+color: #344054;
+}
+
+.home-container{
+  width: 80%;
+  margin: 50px auto;
+}
+
+span{
+  color: #1970DF;
+}
+
+.upload-container{
+  width: 80%;
+  margin: 50px auto;
+
+}
+.button-container{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.btn{
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  color: #344054 !important;
+  background: #FFFFFF !important;
+border: 1px solid #D0D5DD !important;
+line-height: 20px;
+box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05) !important;
+border-radius: 8px !important;
+padding: 10px 16px;
+}
+.btn span{
+  color: #344054;
+}
+.done{
+  background: #1970DF !important;
+border: 1px solid #1970DF !important;
+color: #ffff !important;
+box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+border-radius: 8px;
+margin-left: 20px;
+}
+.done span{
+ color: #fff !important;
+}
+
+
+.upload-page-container{
+  width: 80%;
+  margin: 50px auto;
+  display: flex;
+flex-direction: column;
+align-items: center;
+padding: 16px 24px;
+gap: 4px;
+  padding: 16px 24px;
+
+/* White */
+
+background: #FFFFFF;
+/* Gray/200 */
+
+border: 1px dashed #EAECF0;
+border-radius: 8px;
+}
+
+.upload-header{
+  margin-top: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 60px;
+  width: 100%;
+}
+.input-search{
+  padding: 10px 14px !important;
+width: 400px !important;
+height: 44px !important;
+background: #FFFFFF;
+border: 1px solid #D0D5DD;
+box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+border-radius: 8px !important;
+
+}
+
+
+.uploader-container{
+  /* width: 80%; */
+  margin: 50px auto;
+  display: flex;
+flex-direction: column;
+align-items: center;
+padding: 16px 24px;
+gap: 4px;
+  padding: 16px 24px;
+
+/* White */
+
+background: #FFFFFF;
+/* Gray/200 */
+
+border: 1px dashed #EAECF0;
+border-radius: 8px;
+}
+.uploader-container .icon{
+  margin: 0 auto;
+  display: block;
+}
+
+
+.ant-upload.ant-upload-drag{
+  border: 1px dashed #EAECF0 !important;
+}
