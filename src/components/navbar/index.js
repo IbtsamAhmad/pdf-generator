@@ -32,7 +32,7 @@ function Navbar() {
           <ul className={click ? "nav-menu active" : "nav-menu"}>
             <li className="nav-item">
               <a href="/upload" className="nav-links">
-                Upload
+                
               </a>
             </li>
           </ul>
