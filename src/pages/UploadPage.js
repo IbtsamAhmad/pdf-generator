@@ -68,11 +68,13 @@ const UploadPage = () => {
   const navigate = useNavigate();
   const [selectedKeys, setSelectedKeys] = useState([]) 
   const [listFiles, setListFiles] = useRecoilState(pdfListAtom);
+  // const [filteredFiles,setFilteredFiles]= useState([])
   const [data, setData] = useState([]);
 
 
   useEffect(() => {
     console.log("listFiles", listFiles)
+
     const d = new Date();
     if (listFiles.length === 0) {
       message.error("The uploaded Files for comparison are missing");
@@ -87,11 +89,10 @@ const UploadPage = () => {
       fileSize: '200 KB',
       date: d.toISOString().split('T')[0],
       download: list.fileId,
-
        }
-
       })
       console.log("finalData", finalData)
+      // setFilteredFiles(finalData)
       setData(finalData)
     }
   }, []);
@@ -130,9 +131,8 @@ const UploadPage = () => {
     }
   )
   if (downloadResponse) {
-
     console.log("downloadResponse", downloadResponse.data)
-    downloadResponse.data.map((res) =>{
+    downloadResponse.data.map((res) => {
     console.log("resss", res.link)
         var hiddenElement = document.createElement("a");
     hiddenElement.setAttribute("id", " " + Math.random());
@@ -145,6 +145,58 @@ const UploadPage = () => {
   }
   
   } 
+
+  const deleteHandler = () =>{
+    console.log("selectedKeys", selectedKeys)
+    const d = new Date();
+    if (selectedKeys.length === 0) {
+    return message.error("Please select a file to delete");     
+    }
+    console.log("listFiles", listFiles);
+
+    const newArr = selectedKeys.map(ar => ar.download);
+
+    console.log("newArr", newArr)
+    const myArrayFiltered = listFiles.filter(file => !newArr.includes(file.fileId));
+    
+    console.log("myArrayFiltered", myArrayFiltered);
+
+    const finalData = myArrayFiltered.map((list,i) =>{ 
+      return {
+       key: i,
+     name: list.fileId.split("-")[0],
+     fileSize: '200 KB',
+     date: d.toISOString().split('T')[0],
+     download: list.fileId,
+      }
+     })
+     console.log("finalData", finalData)
+     // setFilteredFiles(finalData)
+     setData(finalData)
+
+  }
+
+  const onChange = (e) =>{
+    const d = new Date();
+    console.log("value", e.target.value)
+    console.log("filtered", listFiles);
+    const excelFiles = [...listFiles];
+    const filteredFiles = excelFiles.filter((file) => file.fileId.includes(e.target.value));
+    console.log("filteredFiles", filteredFiles);
+    const finalData = filteredFiles.map((list,i) =>{ 
+      return {
+       key: i,
+     name: list.fileId.split("-")[0],
+     fileSize: '200 KB',
+     date: d.toISOString().split('T')[0],
+     download: list.fileId,
+      }
+     })
+     console.log("finalData", finalData)
+     // setFilteredFiles(finalData)
+     setData(finalData)
+
+  }
 
   return (
     <div className="upload-page-container">
@@ -161,14 +213,14 @@ const UploadPage = () => {
           <Button className="btn" type="primary" onClick={downloadHandler}>
             Download Selected
           </Button>
-          <Button className="btn done" type="primary">
-            Delete
+          <Button className="btn done" type="primary" onClick={deleteHandler}>
+            Delete Selected
           </Button>
         </div>
       </div>
 
       <div className="list-container">
-        <Input placeholder="Search" className="input-search" />
+        <Input placeholder="Search" className="input-search" onChange={onChange}/>
         <Divider />
         <Table
           rowSelection={{
