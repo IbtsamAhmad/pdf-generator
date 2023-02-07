@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Divider, Button, List, Checkbox, Input, Table, message , Typography} from "antd";
+import { Divider, Button, List, Checkbox, Input, Table, message , Typography , Spin} from "antd";
 import { useRecoilState } from "recoil";
 import { pdfListAtom } from "../store/atom";
 import { useNavigate, useRouter } from "react-router-dom";
@@ -68,6 +68,7 @@ const UploadPage = () => {
   const navigate = useNavigate();
   const [selectedKeys, setSelectedKeys] = useState([]) 
   const [listFiles, setListFiles] = useRecoilState(pdfListAtom);
+  const [loading,setLoading] = useState(false)
   // const [filteredFiles,setFilteredFiles]= useState([])
   const [data, setData] = useState([]);
 
@@ -113,6 +114,50 @@ const UploadPage = () => {
     }),
    
   };
+
+  const downloadZipHandler = async () =>{
+    console.log("selectedKeys", selectedKeys)
+    const downloadRows =  selectedKeys.map((row) => row.download)
+    console.log("downloadRows", downloadRows);
+    setLoading(true)
+
+    const zipResponse = await axios.post(
+      "https://bizfund-exceltopdf.herokuapp.com/api/file/downloadZip",
+      {
+        fileIds: downloadRows
+      },
+      {
+        headers: {
+          "Content-Type": "application/json"
+        },
+      }
+    )
+    if (zipResponse) {
+      console.log("zipResponse", zipResponse.data)
+      const downloadResponse = await axios.post(
+        "https://bizfund-exceltopdf.herokuapp.com/api/file/get_temporary_link",
+        {
+          fileId: zipResponse.data.link
+        },
+        {
+          headers: {
+            "Content-Type": "application/json"
+          },
+        }
+      )
+     if(downloadResponse){
+      console.log("downloadResponse", downloadResponse)
+      var hiddenElement = document.createElement("a");
+      hiddenElement.setAttribute("id", " " + Math.random());
+      hiddenElement.href = downloadResponse.data?.link;
+      hiddenElement.setAttribute('target', '_blank');
+      console.log("hiddenElement", hiddenElement);
+       hiddenElement.click();
+     }
+
+     setLoading(false);
+    }
+  }
 
 
   const downloadHandler = async () =>{
@@ -200,6 +245,7 @@ const UploadPage = () => {
 
   return (
     <div className="upload-page-container">
+        <Spin spinning={loading}>
       <a href="/">
         <Button className="btn">Back</Button>
       </a>
@@ -215,6 +261,9 @@ const UploadPage = () => {
           </Button>
           <Button className="btn done" type="primary" onClick={deleteHandler}>
             Delete Selected
+          </Button>
+          <Button className="btn" type="primary" onClick={downloadZipHandler}>
+            Download Zip
           </Button>
         </div>
       </div>
@@ -238,6 +287,7 @@ const UploadPage = () => {
         />
  
       </div>
+      </Spin>
     </div>
   );
 };
