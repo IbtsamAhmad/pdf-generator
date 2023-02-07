@@ -123,6 +123,9 @@ const UploadPage = () => {
 
   const downloadZipHandler = async () =>{
     console.log("selectedKeys", selectedKeys)
+    if (selectedKeys.length === 0) {
+     return message.error("Please select a file")      
+    }
     const downloadRows =  selectedKeys.map((row) => row.download)
     console.log("downloadRows", downloadRows);
     setLoading(true)
@@ -174,6 +177,9 @@ const UploadPage = () => {
 
   const downloadHandler = async () =>{
      console.log("selectedKeys", selectedKeys)
+     if (selectedKeys.length === 0) {
+      return message.error("Please select a file")      
+     }
   const downloadRows =  selectedKeys.map((row) => row.download)
   console.log("downloadRows", downloadRows);
   const downloadResponse = await axios.post(
