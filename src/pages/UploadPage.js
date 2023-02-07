@@ -92,7 +92,7 @@ const UploadPage = () => {
       const finalData = listFiles.map((list,i) =>{ 
        return {
         key: i,
-      name: list.fileId.split("-")[0],
+      name: list.fileId.split("/")[1],
       fileSize: '200 KB',
       date: d.toISOString().split('T')[0],
       download: list.fileId,
