@@ -84,7 +84,7 @@ const UploadPage = () => {
 
     const d = new Date();
     if (listFiles.length === 0) {
-      message.error("The uploaded Files for comparison are missing");
+      message.error("Pdf Files are missing");
       setTimeout(() => {
        navigate("/");
       }, 1000);
@@ -128,8 +128,10 @@ const UploadPage = () => {
     }
     const downloadRows =  selectedKeys.map((row) => row.download)
     console.log("downloadRows", downloadRows);
-    setLoading(true)
+    setLoading(true);
 
+    try {
+      
     const zipResponse = await axios.post(
       "https://bizfund-exceltopdf.herokuapp.com/api/file/downloadZip",
       {
@@ -168,10 +170,12 @@ const UploadPage = () => {
         console.log("error", error)
         message.error(error.response.data.message)
       }
-    
-
-     setLoading(false);
     }
+    } catch (error) {
+      console.log("error", error)
+      message.error(error.response.data.message)
+    }
+    setLoading(false);
   }
 
 
@@ -182,30 +186,36 @@ const UploadPage = () => {
      }
   const downloadRows =  selectedKeys.map((row) => row.download)
   console.log("downloadRows", downloadRows);
-  const downloadResponse = await axios.post(
-    "https://bizfund-exceltopdf.herokuapp.com/api/file/get_temporary_links",
-    {
-      fileIds: downloadRows
-    },
-    {
-      headers: {
-        "Content-Type": "application/json"
+  try {
+    const downloadResponse = await axios.post(
+      "https://bizfund-exceltopdf.herokuapp.com/api/file/get_temporary_links",
+      {
+        fileIds: downloadRows
       },
-    }
-  )
-  if (downloadResponse) {
-    console.log("downloadResponse", downloadResponse.data)
-    downloadResponse.data.map((res) => {
-    console.log("resss", res.link)
-        var hiddenElement = document.createElement("a");
-    hiddenElement.setAttribute("id", " " + Math.random());
-    hiddenElement.href = res?.link;
-    hiddenElement.setAttribute('target', '_blank');
-    console.log("hiddenElement", hiddenElement);
-     hiddenElement.click();
-    })
-
+      {
+        headers: {
+          "Content-Type": "application/json"
+        },
+      }
+    )
+    if (downloadResponse) {
+      console.log("downloadResponse", downloadResponse.data)
+      downloadResponse.data.map((res) => {
+      console.log("resss", res.link)
+          var hiddenElement = document.createElement("a");
+      hiddenElement.setAttribute("id", " " + Math.random());
+      hiddenElement.href = res?.link;
+      hiddenElement.setAttribute('target', '_blank');
+      console.log("hiddenElement", hiddenElement);
+       hiddenElement.click();
+      })
+  
+    } 
+  } catch (error) {
+    console.log("error", error)
+    message.error(error.response.data.message)
   }
+
   
   } 
 
