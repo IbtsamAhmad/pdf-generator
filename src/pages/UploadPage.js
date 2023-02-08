@@ -290,9 +290,9 @@ const UploadPage = () => {
           <Button className="btn done" type="primary" onClick={deleteHandler}>
             Delete Selected
           </Button>
-          <Button className="btn" type="primary" onClick={downloadZipHandler}>
+          {/* <Button className="btn" type="primary" onClick={downloadZipHandler}>
             Download Zip
-          </Button>
+          </Button> */}
         </div>
       </div>
 
