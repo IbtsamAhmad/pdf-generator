@@ -184,6 +184,7 @@ const UploadPage = () => {
      if (selectedKeys.length === 0) {
       return message.error("Please select a file")      
      }
+     setLoading(true);
   const downloadRows =  selectedKeys.map((row) => row.download)
   console.log("downloadRows", downloadRows);
   try {
@@ -202,20 +203,27 @@ const UploadPage = () => {
       console.log("downloadResponse", downloadResponse.data)
       downloadResponse.data.map((res) => {
       console.log("resss", res.link)
-          var hiddenElement = document.createElement("a");
-      hiddenElement.setAttribute("id", " " + Math.random());
-      hiddenElement.href = res?.link;
-      hiddenElement.setAttribute('target', '_blank');
-      console.log("hiddenElement", hiddenElement);
-       hiddenElement.click();
+      if (res.link === null) {
+       message.error("File not generated Yet") 
+      }
+      else{
+        var hiddenElement = document.createElement("a");
+        hiddenElement.setAttribute("id", " " + Math.random());
+        hiddenElement.href = res?.link;
+        hiddenElement.setAttribute('target', '_blank');
+        console.log("hiddenElement", hiddenElement);
+         hiddenElement.click();
+      }
+
       })
   
     } 
   } catch (error) {
     console.log("error", error)
     message.error(error.response.data.message)
+    setLoading(false);
   }
-
+  setLoading(false);
   
   } 
 
