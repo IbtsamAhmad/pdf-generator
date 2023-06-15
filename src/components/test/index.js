@@ -19,11 +19,15 @@ function MyComponent() {
       const formData = new FormData();
       console.log("file append", file)
       formData.append('excel', file);
-      await axios.post('https://bizfund-exceltopdf.herokuapp.com/api/file/excelToPDF', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
+      await axios.post(
+        "https://infinite-waters-75444-dacdc86dadc2.herokuapp.com/api/file/excelToPDF",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
-      });
+      );
     } catch (err) {
       console.error(err);
     }

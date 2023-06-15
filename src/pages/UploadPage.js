@@ -38,16 +38,16 @@ const columns = [
           console.log(record, rowIndex);
           try {
             const downloadResponse = await axios.post(
-              "https://bizfund-exceltopdf.herokuapp.com/api/file/get_temporary_link",
+              "https://infinite-waters-75444-dacdc86dadc2.herokuapp.com/api/file/get_temporary_link",
               {
-                fileId: record.download
+                fileId: record.download,
               },
               {
                 headers: {
                   "Content-Type": "multipart/form-data",
                 },
               }
-            )
+            );
             if (downloadResponse) {
               console.log("downloadResponse", downloadResponse?.data?.link)
               var hiddenElement = document.createElement("a");
@@ -133,30 +133,30 @@ const UploadPage = () => {
     try {
       
     const zipResponse = await axios.post(
-      "https://bizfund-exceltopdf.herokuapp.com/api/file/downloadZip",
+      "https://infinite-waters-75444-dacdc86dadc2.herokuapp.com/api/file/downloadZip",
       {
-        fileIds: downloadRows
+        fileIds: downloadRows,
       },
       {
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
       }
-    )
+    );
     if (zipResponse) {
       console.log("zipResponse", zipResponse.data)
       try {
         const downloadResponse = await axios.post(
-          "https://bizfund-exceltopdf.herokuapp.com/api/file/get_temporary_link",
+          "https://infinite-waters-75444-dacdc86dadc2.herokuapp.com/api/file/get_temporary_link",
           {
-            fileId: zipResponse.data.link
+            fileId: zipResponse.data.link,
           },
           {
             headers: {
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
             },
           }
-        )
+        );
        if(downloadResponse){
         console.log("downloadResponse", downloadResponse)
         var hiddenElement = document.createElement("a");
@@ -189,16 +189,16 @@ const UploadPage = () => {
   console.log("downloadRows", downloadRows);
   try {
     const downloadResponse = await axios.post(
-      "https://bizfund-exceltopdf.herokuapp.com/api/file/get_temporary_links",
+      "https://infinite-waters-75444-dacdc86dadc2.herokuapp.com/api/file/get_temporary_links",
       {
-        fileIds: downloadRows
+        fileIds: downloadRows,
       },
       {
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
       }
-    )
+    );
     if (downloadResponse) {
       console.log("downloadResponse", downloadResponse.data)
       downloadResponse.data.map((res) => {
