@@ -38,7 +38,7 @@ const columns = [
           console.log(record, rowIndex);
           try {
             const downloadResponse = await axios.post(
-              "https://infinite-waters-75444-dacdc86dadc2.herokuapp.com/api/file/get_temporary_link",
+              "https://biz-fund-027ab12db219.herokuapp.com/api/file/get_temporary_link",
               {
                 fileId: record.download,
               },
@@ -133,7 +133,7 @@ const UploadPage = () => {
     try {
       
     const zipResponse = await axios.post(
-      "https://infinite-waters-75444-dacdc86dadc2.herokuapp.com/api/file/downloadZip",
+      "https://biz-fund-027ab12db219.herokuapp.com/api/file/downloadZip",
       {
         fileIds: downloadRows,
       },
@@ -147,7 +147,7 @@ const UploadPage = () => {
       console.log("zipResponse", zipResponse.data)
       try {
         const downloadResponse = await axios.post(
-          "https://infinite-waters-75444-dacdc86dadc2.herokuapp.com/api/file/get_temporary_link",
+          "https://biz-fund-027ab12db219.herokuapp.com/api/file/get_temporary_link",
           {
             fileId: zipResponse.data.link,
           },
@@ -189,7 +189,7 @@ const UploadPage = () => {
   console.log("downloadRows", downloadRows);
   try {
     const downloadResponse = await axios.post(
-      "https://infinite-waters-75444-dacdc86dadc2.herokuapp.com/api/file/get_temporary_links",
+      "https://biz-fund-027ab12db219.herokuapp.com/api/file/get_temporary_links",
       {
         fileIds: downloadRows,
       },

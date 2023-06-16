@@ -20,7 +20,7 @@ function MyComponent() {
       console.log("file append", file)
       formData.append('excel', file);
       await axios.post(
-        "https://infinite-waters-75444-dacdc86dadc2.herokuapp.com/api/file/excelToPDF",
+        "https://infinite-waters-75444-dacdc86dadc2.herokuapp.com/api/file/excelToPDF/api/file/excelToPDF",
         formData,
         {
           headers: {
