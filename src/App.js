@@ -11,7 +11,7 @@ import { RecoilRoot } from "recoil";
 function App() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar />
       <RecoilRoot>
         <BrowserRouter>
           <Routes>
@@ -21,7 +21,7 @@ function App() {
 
           </Routes>
         </BrowserRouter>
-      </RecoilRoot>
+      </RecoilRoot> */}
     </>
   );
 }
