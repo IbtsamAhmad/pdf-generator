@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <Navbar />
-      {/* <RecoilRoot>
+      <RecoilRoot>
         <BrowserRouter>
           <Routes>
             <Route path="/upload" element={<UploadPage />} />
@@ -21,7 +21,7 @@ function App() {
 
           </Routes>
         </BrowserRouter>
-      </RecoilRoot> */}
+      </RecoilRoot>
     </>
   );
 }
