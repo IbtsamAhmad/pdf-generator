@@ -12,16 +12,16 @@ function App() {
   return (
     <>
       <Navbar />
-      <RecoilRoot>
+      {/* <RecoilRoot>
         <BrowserRouter>
           <Routes>
             <Route path="/upload" element={<UploadPage />} />
-            {/* <Route path="/null" element={<NullPage />}></Route> */}
+
             <Route path="/" element={<Home />}></Route>
 
           </Routes>
         </BrowserRouter>
-      </RecoilRoot>
+      </RecoilRoot> */}
     </>
   );
 }
